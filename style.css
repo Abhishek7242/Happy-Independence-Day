@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    background: linear-gradient(45deg, #ff8000,  #ff8000,#ffffff, #0b8300, #0b8300);
+    background-size: 400% 400%; /* Larger background size for smoother animation */
+    animation: gradient-animation 10s ease infinite; /* Smooth and slow gradient animation */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.flag-container {
+    perspective: 2000px;
+}
+
+.flagpole {
+    width: 20px; /* Larger pole */
+    height: 500px; /* Taller pole */
+    background-color: #8B4513; /* Wood-like color for the flagpole */
+    position: absolute;
+    left: calc(50% - 170px);
+    top: calc(50% - 100px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.flag {
+    width: 320px;
+    height: 200px;
+    background: linear-gradient(to bottom, #ff9933 33.33%, #ffffff 33.33%, #ffffff 66.66%, #128807 66.66%);
+    position: relative;
+    animation: wave-horizontal 5s infinite ease-in-out, wave-vertical 2.5s infinite ease-in-out, rotateY-wind 4s infinite ease-in-out; /* Combined animations */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    border-radius: 2px;
+    overflow: hidden;
+    transform-origin: left center;
+    background-size: cover;
+    background-attachment: fixed;
+    margin-left: 20px; /* Adjusted margin to align with the pole */
+}
+
+.flag::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border-radius: 50%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Ashoka_Chakra.svg/750px-Ashoka_Chakra.svg.png') no-repeat center center/contain;
+    z-index: 1;
+}
+
+.flag::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15); /* Subtle lighting effect */
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+
+
+@keyframes rotateY-wind {
+    0%, 100% { transform: rotateY(0deg); }
+    50% { transform: rotateY(-30deg); } /* Rotate around Y-axis for wind effect */
+}
+
+.flag-texture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png'); /* Textured pattern */
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+
+
+@keyframes flagpole-animation {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-2px); }
+}
+
+.flagpole {
+    animation: flagpole-animation 3s infinite ease-in-out;
+}
+
+.flag.ripple {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 0, 255, 0.7);
+    transform: scale(0);
+    animation: ripple-animation 1s linear;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
